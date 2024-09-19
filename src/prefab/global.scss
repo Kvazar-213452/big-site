@@ -1,0 +1,69 @@
+@import 'solid/conf';
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: $text_color;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.invin {filter: $invert;}
+
+.menu_set_page,
+.menu_conf_page,
+#hist,
+body,
+#div_setings1,
+#div_setings2,
+#div_setings3,
+#div_setings4,
+#div_setings5,
+#div_setings6 {
+    &::-webkit-scrollbar {
+        width: 11px;
+        background-color: $scrollbar_bg;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $scrollbar_thumb;
+    }
+}
+
+.color_g {color: $color-green;}
+
+.color_o {color: $color_orange;}
+
+.color_o_im {color: $color_orange !important;}
+
+.color_w {color: $text_color;}
+
+.color_b_r:hover {border: solid 2px $color_red;}
+
+.color_b_g:hover {border: solid 2px $color_green;}
+
+.fon_1 {font-size: 18px;}
+
+input,
+button,
+p,
+div{
+    border: none;
+    font-weight: bold;
+    transition: all 0.5s;
+}
+
+img{transition: all 0.3s;}
+
+input,
+button{
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button{cursor: pointer;}

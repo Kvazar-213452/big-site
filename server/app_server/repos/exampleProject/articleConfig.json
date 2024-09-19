@@ -1,0 +1,8 @@
+{
+    "id":0,
+    "name": "exampleProject",
+    "descripton": "short desc",
+    "detailDescription": "articleSources/detailDescription.html",
+    "icon": "articleSources/icon.ico",
+    "categories": ["Shit1", "Shit2"]
+}

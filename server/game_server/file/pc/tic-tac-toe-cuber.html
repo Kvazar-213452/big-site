@@ -1,0 +1,2053 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - tic tac toe + illustration</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,900,900i" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<style>
+  @media only screen and (min-width: 769px) {
+    .mobileX {
+    display:none ;  
+    }
+}
+@media only screen and (min-width: 769px) {
+    #popUp {
+    display:none !important;  
+    }
+}
+@media only screen and (min-width: 769px) {
+    #gameOverAi {
+    display:none !important;  
+    }
+}
+@media only screen and (min-width: 769px) {
+    #gameOverPlayer {
+    display:none !important;  
+    }
+}
+@media only screen and (min-width: 769px) {
+    #gameOverDraw {
+    display:none !important;  
+    }
+}
+
+body {
+  background-color: #000022;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507461360/_TicTac_background1_giwtgd.svg");
+  background-size: cover;
+}
+
+.titleBar {
+  margin:auto;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  width: 300px;
+  height: 90px;
+  line-height: 90px;
+  font-size: 30px;
+  text-align: center;
+  color: #8ff9f6;
+}
+
+
+.title1 {
+display: inline;
+  font-weight: 900;
+}
+
+.title2 {
+  display: inline;
+  font-weight: 300;
+}
+
+#main {
+  margin: auto;
+  cursor:pointer;
+  border: solid;
+  border-width: 1px;
+  border-color: #00dbe5;
+  position: relative;
+  padding: 0px;
+
+  width: 300px;
+  height: 300px;
+  background-color: #000022;
+}
+
+.squareM {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.waiting {
+  background-position: left;
+}
+.played {
+  background-position: right;
+}
+.animateIt {
+  
+  background-position:right;
+  background-size: 600%, 100%;
+  -webkit-animation-name: play;
+          animation-name: play;
+  -webkit-animation-duration: 0.25s;
+          animation-duration: 0.25s;
+  -webkit-animation-timing-function: steps(5);
+          animation-timing-function: steps(5);
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+}
+@-webkit-keyframes play {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+@keyframes play {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+
+#s00 {
+  top: 9px;
+  left: 9px;
+}
+.s00Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507467654/_TicTac_Top_LEFT_Blue_sprite_edited_b5lkju.svg");
+}
+
+.s00Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507645328/_TicTac_Top_LEFT_Orange_sprite_edited_otufmj.svg");
+}
+
+#s01 {
+  top: 9px;
+  left: 103px;
+}
+.s01Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507609427/_TicTac_Top_CENTRE_Blue_sprite_edited_lkeg9f.svg");
+}
+.s01Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507645707/_TicTac_Top_CENTRE_Orange_sprite_sjkrez.svg");
+}
+#s02 {
+  top: 9px;
+  right: 9px;
+}
+.s02Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507612697/_TicTac_Top_RIGHT_Blue_sprite_edited_oe9mr6.svg");
+}
+.s02Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507645806/_TicTac_Top_RIGHT_Orange_sprite_ciutxr.svg");
+}
+#s10 {
+  top: 103px;
+  left: 9px;
+}
+.s10Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507612908/_TicTac_Middle_LEFT_Blue_sprite_edited_xrcu6h.svg");
+}
+.s10Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507645963/_TicTac_Middle_LEFT_Orange_sprite_jk1iku.svg");
+}
+#s11 {
+  top: 103px;
+  right: 103px;
+}
+.s11Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507613089/_TicTac_Middle_CENTRE_Blue_sprite_edited_ciih86.svg");
+}
+.s11Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507646055/_TicTac_Middle_CENTRE_Orange_sprite_u8yliq.svg");
+}
+
+#s12 {
+  top: 103px;
+  right: 9px;
+}
+.s12Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507613277/_TicTac_Middle_RIGHT_Blue_sprite_edited_zgmlhl.svg");
+}
+.s12Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507646154/_TicTac_Middle_RIGHT_Orange_sprite_dczej5.svg");
+}
+#s20 {
+  bottom: 9px;
+  left: 9px;
+}
+.s20Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507613470/_TicTac_Bottom_LEFT_Blue_sprite_edited_ld5aqy.svg");
+}
+.s20Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507646253/_TicTac_Bottom_LEFT_Orange_sprite_v0bpby.svg");
+}
+#s21 {
+  bottom: 9px;
+  left: 103px;
+}
+.s21Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507613663/_TicTac_Bottom_CENTRE_Blue_sprite_edited_f8sitv.svg");
+}
+.s21Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507646325/_TicTac_Bottom_CENTRE_Orange_sprite_tsimyx.svg");
+}
+#s22 {
+  bottom: 9px;
+  right: 9px;
+}
+.s22Blue {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507613822/_TicTac_Bottom_RIGHT_Blue_sprite_edited_xvdlvv.svg");
+}
+.s22Oran {
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507646393/_TicTac_Bottom_RIGHT_Orange_sprite_lvnex2.svg");
+}
+#menu {
+  position: relative;
+  margin: auto;
+  width: 300px;
+  height: 90px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  line-height: 13px;
+}
+#menuInner1 {
+  position: absolute;
+  top: 30px;
+
+  width: 300px;
+  height: 13px;
+}
+#menuInner2 {
+  position: absolute;
+  bottom: 30px;
+  width: 300px;
+  height: 13px;
+}
+#menuBottom {
+  position: relative;
+  width: 300px;
+  height: 600px;
+}
+#firstDeco {
+  position: absolute;
+  top: 5px;
+  height: 48px;
+  width: 300px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507557945/_TicTac_Reset_frame_TOP_edited_kignme.svg");
+  background-size: cover;
+  transition: 1s;
+  z-index: 1;
+  background-repeat: no-repeat;
+}
+.firstDecoUp {
+  top: 0px !important;
+}
+#secondDeco {
+  position: absolute;
+  top: 88px;
+  height: 27px;
+  width: 300px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507557794/_TicTac_Reset_frame_BOTTOM_edited_hitbso.svg");
+  background-size: cover;
+  transition: 1s;
+  z-index: 1;
+  background-repeat: no-repeat;
+}
+.secondDecoUp {
+  top: 93px !important;
+}
+#resetCap{
+top: 20px;
+  height: 60px;
+  width: 300px;
+  z-index:+2;
+}
+#reset {
+  cursor: pointer;
+  position: absolute;
+  top: 52px;
+  height: 36px;
+  width: 300px;
+  background-color: #000022;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 38px;
+  color: #00a0d5;
+  transition: 1s;
+  z-index: 0;
+}
+.resetUp {
+  top: 48px !important;
+  height: 55px !important;
+  font-size: 22px !important;
+  line-height: 55px !important;
+}
+#thirdDeco {
+  position: absolute;
+  top: 120px;
+  width: 300px;
+  height: 127px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507573880/_TicTac_Leaderboard_frame_TOP_edited_aisbz9.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#leaderBackground {
+  position: absolute;
+  width: 300px;
+  top: 247px;
+  height: 153px;
+  z-index: -2;
+  background-color: #000022;
+}
+#leaderBoard {
+  position: absolute;
+  width: 300px;
+  height: 30px;
+  top: 188px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  font-size: 20px;
+  color: #8ff9f6;
+}
+#userIcon {
+  position: absolute;
+  top: 255px;
+  left: 23px;
+  height: 48px;
+  width: 53px;
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.userIconBlue{
+background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507574328/_TicTac_helmet_blue_edited_fwyaus.svg");  
+}
+.userIconOran{
+background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460432/_TicTac_helmet_yellow_xn4vnh.svg");  
+}
+#drawIcon {
+  position: absolute;
+  top: 255px;
+  left: 126px;
+  height: 48px;
+  width: 48px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507574228/_TicTac_draw_edited_c37dji.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#aiIcon {
+  position: absolute;
+  top: 249px;
+  left: 226px;
+  height: 60px;
+  width: 48px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.aiIconOran{
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507574118/_TicTac_AI_orange_edited_dz2amv.svg");  
+}
+.aiIconBlue{
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460422/_TicTac_AI_blue_rtbjc3.svg");  
+}
+#userIconText {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 312px;
+  left: 23px;
+  width: 53px;
+  color: #8ff9f6;
+}
+#drawIconText {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 312px;
+  left: 126px;
+  width: 48px;
+  color: #8ff9f6;
+}
+#aiIconText {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 312px;
+  left: 226px;
+  width: 48px;
+  color: #8ff9f6;
+}
+#fourthDeco {
+  width: 300px;
+  height: 17px;
+  position: absolute;
+  top: 335px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507573732/_TicTac_Leaderboard_line_MIDDLE_edited_c2j99u.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#userScore {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 340px;
+  left: 23px;
+  width: 48px;
+  font-size: 50px;
+}
+.userScoreBlue{
+color: #00a0d5;  
+}
+.userScoreOran{
+ color: #ff7919;  
+}
+#drawScore {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 340px;
+  left: 126px;
+  width: 48px;
+  color: #8ff9f6;
+  font-size: 50px;
+}
+#aiScore {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 340px;
+  left: 226px;
+  width: 48px;
+ 
+  font-size: 50px;
+}
+.aiScoreOran{
+ color: #ff7919;  
+}
+.aiScoreBlue{
+color: #00a0d5;  
+}
+#bottomDeco {
+  width: 300px;
+  height: 47px;
+  position: absolute;
+  top: 400px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507572348/_TicTac_Leaderboard_frame_BOTTOM_edited_mosfhy.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.popUp {
+  display: none; 
+  position: fixed; 
+  z-index: 2; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.7); 
+}
+.popUpInner {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin: 40% auto;
+
+}
+#popTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 84px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507617538/_TicTac_Dropdown_TOP_edited_lxgqxi.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#popCenterLeft {
+  position: absolute;
+  top: 84px;
+  left: 0;
+  width: 200px;
+  height: 71px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460428/_TicTac_Dropdown_CENTRE_LEFT_axaoqv.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#popCenterRight {
+  position: absolute;
+  top: 84px;
+  left: 199px;
+  width: 102px;
+  height: 71px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460429/_TicTac_Dropdown_CENTRE_Right_bgr128_misq7c.svg");
+  background-size: cover;
+}
+#popCenterRightSprite {
+  position: absolute;
+  background-size: cover;
+  top: 84px;
+  left: 200px;
+  width: 80px;
+  height: 28.4px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507643037/_TicTac_Dropdown_CENTRE_Right_Sprite64_PlusOne_modpe3.svg");
+  background-size: 2100%, 100%;
+  -webkit-animation-name: rightSprite;
+          animation-name: rightSprite;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: steps(20);
+          animation-timing-function: steps(20);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes rightSprite {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+
+@keyframes rightSprite {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+
+#popBottom {
+  position: absolute;
+  top: 154px;
+  left: 0;
+  width: 300px;
+  height: 33px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460426/_TicTac_Dropdown_Bottom_gie7xe.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.popX {
+  background-position: left;
+  cursor: pointer;
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  top: 110px;
+  left: 34px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507625296/_TicTac_Dropdown_buttonX_sprite_vljer8.svg");
+  background-size: 300%, 100%;
+  -webkit-animation-name: playPopX;
+          animation-name: playPopX;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: steps(1);
+          animation-timing-function: steps(1);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+@-webkit-keyframes playPopX {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+@keyframes playPopX {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+.popO {
+  cursor: pointer;
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  top: 110px;
+  left: 121px;
+  background-position: left;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507622775/_TicTac_Dropdown_buttonO_sprite_edited_b5fasm.svg");
+
+  background-size: 300%, 100%;
+  -webkit-animation-name: playPopO;
+          animation-name: playPopO;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: steps(1);
+          animation-timing-function: steps(1);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes playPopO {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+
+@keyframes playPopO {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+.winnerInner {
+  position: relative;
+  height: 118px;
+  width: 300px;
+  margin: 40% auto;
+background-image:url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507572002/_TicTac_PopupWINS_bgr_edited_lfmjtp.svg");
+ background-size:cover; 
+
+}
+#winnerAi{
+position:absolute;
+top:53px;
+margin:auto;
+width:300px;
+text-align:center;
+font-size:25px;
+}
+#winnerPlayer{
+position:absolute;
+top:53px;
+margin:auto;
+width:300px;
+text-align:center;
+font-size:25px;
+}
+#winnerDraw{
+position:absolute;
+top:53px;
+margin:auto;
+width:300px;
+text-align:center;
+font-size:25px;
+ 
+}
+
+.titleBarP {
+  font-family: "Montserrat", sans-serif;
+  width: 600px;
+  height: 120px;
+  line-height: 120px;
+  font-size: 55px;
+  text-align: center;
+  color: #8ff9f6;
+}
+#menuInnerP{
+position:relative; 
+}
+#rules1P{
+ top:32.5px;
+ position:absolute;
+ width:345px; 
+ text-align:center;
+ font-size:20px;
+   font-family: "Montserrat", sans-serif; 
+}
+#rules2P{
+ bottom:18px; 
+ position:absolute; 
+ width:345px; 
+ text-align:center; 
+ font-size:20px;
+  font-family: "Montserrat", sans-serif; 
+}
+#boardP{
+position:absolute;
+
+width:600px;
+height:600px;
+left:0;
+top:120px;  
+}
+#boardPInner{
+position:relative;
+width:600px;
+height:600px;  
+border:solid;
+border-width: 1px;
+border-color:#8ff9f6;
+background-color:#000022;
+}
+.squareP{
+cursor:pointer;
+ position: absolute;
+  width: 192px;
+  height: 192px;
+  background-size: cover;
+  background-repeat: no-repeat;  
+}
+#p00{
+top:9px;
+left:9px;
+}
+#p01{
+top:9px;
+left:203px;
+}
+#p02{
+top:9px;
+right:9px;
+}
+#p10{
+top:203px;
+left:9px;
+}
+#p11{
+top:203px;
+left:203px;
+}
+#p12{
+top:203px;
+right:9px;
+}
+#p20{
+bottom:9px;
+left:9px;
+}
+#p21{
+bottom:9px;
+left:203px;
+}
+#p22{
+bottom:9px;
+right:9px;
+}
+#menuInnerP{
+width:345px;
+height:600px;
+}
+#firstDecoP {
+  position: absolute;
+  top: 30px;
+  height: 55px;
+  width: 345px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507557945/_TicTac_Reset_frame_TOP_edited_kignme.svg");
+  background-size: cover;
+  transition: 1s;
+  z-index: 1;
+  background-repeat: no-repeat;
+}
+.firstDecoPUp {
+  top: 0px !important;
+}
+#secondDecoP {
+  position: absolute;
+  top: 145px;
+  height: 30.6px;
+  width: 345px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507557794/_TicTac_Reset_frame_BOTTOM_edited_hitbso.svg");
+  background-size: cover;
+  transition: 1s;
+  z-index: 1;
+  background-repeat: no-repeat;
+}
+.secondDecoPUp {
+  top: 175px !important;
+}
+#resetP {
+  cursor: pointer;
+  position: absolute;
+  top:85px;
+  height: 60px;
+  width: 345px;
+  background-color: #000022;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  line-height: 60px;
+  color: #00a0d5;
+  transition: 1s;
+  z-index: 0;
+}
+.resetPUp {
+  top: 55px !important;
+  height: 120px !important;
+  font-size: 35px !important;
+  line-height: 120px !important;
+}
+#thirdDecoP {
+  position: absolute;
+  top: 205px;
+  width: 345px;
+  height: 145.6px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507573880/_TicTac_Leaderboard_frame_TOP_edited_aisbz9.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#bottomDecoP {
+  width: 345px;
+  height: 53.6px;
+  position: absolute;
+  bottom:0;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507572348/_TicTac_Leaderboard_frame_BOTTOM_edited_mosfhy.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#userIconP {
+  position: absolute;
+  top: 360.5px;
+  left: 27.5px;
+  height: 54.3px;
+  width: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#userScoreP {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 460px;
+  left: 27.5px;
+  width: 60px;
+  font-size: 60px;
+}
+#userIconTextP {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 430px;
+  left: 27.5px;
+  width: 60px;
+  color: #8ff9f6;
+}
+#drawIconP {
+  position: absolute;
+  top: 357.5px;
+  left: 142.5px;
+  height: 60px;
+  width: 60px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507574228/_TicTac_draw_edited_c37dji.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  }
+#drawScoreP {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 460px;
+  left: 142.5px;
+  width: 60px;
+  color: #8ff9f6;
+  font-size: 60px;
+}
+
+#drawIconTextP {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 430px;
+  left: 142.5px;
+  width: 60px;
+  color: #8ff9f6;
+}
+#aiIconP {
+  position: absolute;
+  top: 350px;
+  right:27.5px;
+  height: 75px;
+  width: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#aiScoreP {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 460px;
+  right:27.5px;
+  width: 60px;
+  font-size: 60px;
+}
+
+#aiIconTextP {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  position: absolute;
+  top: 430px;
+  right:27.5px;
+  width: 60px;
+  color: #8ff9f6;
+}
+#fourthDecoP {
+  width: 345px;
+  height: 19.2px;
+  position: absolute;
+  top: 450px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507573732/_TicTac_Leaderboard_line_MIDDLE_edited_c2j99u.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#leaderBackgroundP {
+  position: absolute;
+  width: 345px;
+  top: 350px;
+  height: 200px;
+  z-index: -2;
+  background-color: #000022;
+}
+#leaderBoardP {
+  position: absolute;
+  width: 345px;
+  height: 30px;
+  top: 283px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  text-align: center;
+  font-size: 23px;
+  color: #8ff9f6;
+}
+@media only screen and (max-width: 770px) {
+    .pc {
+    display:none ;  
+    }
+}
+
+
+
+@media only screen and (max-width: 770px) {
+    #popUpP {
+    display:none !important;  
+    }
+}
+@media only screen and (max-width: 770px) {
+    #gameOverAiP {
+    display:none !important;  
+    }
+}
+@media only screen and (max-width: 770px) {
+    #gameOverPlayerP {
+    display:none !important;  
+    }
+}
+@media only screen and (max-width: 770px) {
+    #gameOverDrawP {
+    display:none !important;  
+    }
+}
+.popUpP {
+  display:none; 
+  position: fixed; 
+  z-index: 2; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0, 0, 0, 0.7); 
+}
+.popUpInnerP {
+  position: relative;
+
+  height: 400px;
+  width: 600px;
+  margin: 10% auto;
+
+}
+#popTopP {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 95.5px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507617538/_TicTac_Dropdown_TOP_edited_lxgqxi.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#popCenterLeftP {
+  position: absolute;
+  top: 95.5px;
+  left: 0;
+  width: 399px;
+  height: 141px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460428/_TicTac_Dropdown_CENTRE_LEFT_axaoqv.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#popCenterRightP {
+  position: absolute;
+  top: 94px;
+  right:0;
+  width: 201px;
+  height: 143px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460429/_TicTac_Dropdown_CENTRE_Right_bgr128_misq7c.svg");
+  background-size: cover;
+  z-index:0;
+}
+#popCenterRightSpriteP {
+  position: absolute;
+  background-size: cover;
+  top: 96px;
+  left: 400px;
+  width: 160px;
+  height: 67px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507643037/_TicTac_Dropdown_CENTRE_Right_Sprite64_PlusOne_modpe3.svg");
+  background-size: 2100%, 100%;
+  -webkit-animation-name: rightSpriteP;
+          animation-name: rightSpriteP;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: steps(20);
+          animation-timing-function: steps(20);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes rightSpriteP {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+
+@keyframes rightSpriteP {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+#popPBackground{
+width:600px;
+height:20px;
+background-color:#000022;
+position: absolute;
+ top: 230px; 
+z-index:-1;
+}
+#popBottomP {
+  position: absolute;
+  top: 237px;
+  left: 0;
+  width: 600px;
+  height: 66px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507460426/_TicTac_Dropdown_Bottom_gie7xe.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.popXP {
+  background-position: left;
+  cursor: pointer;
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 160px;
+  left: 68px;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507625296/_TicTac_Dropdown_buttonX_sprite_vljer8.svg");
+  background-size: 300%, 100%;
+  -webkit-animation-name: playPopXP;
+          animation-name: playPopXP;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: steps(1);
+          animation-timing-function: steps(1);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+@-webkit-keyframes playPopXP {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+@keyframes playPopXP {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+.popOP {
+  cursor: pointer;
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 160px;
+  left: 263px;
+  background-position: left;
+  background-image: url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507622775/_TicTac_Dropdown_buttonO_sprite_edited_b5fasm.svg");
+
+  background-size: 300%, 100%;
+  -webkit-animation-name: playPopOP;
+          animation-name: playPopOP;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: steps(1);
+          animation-timing-function: steps(1);
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes playPopOP {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+
+@keyframes playPopOP {
+  0% {
+    background-position: left;
+  }
+  33% {
+    background-position: center;
+  }
+  66% {
+    background-position: right;
+  }
+}
+.winnerInnerP {
+  position: relative;
+  height: 236px;
+  width: 600px;
+  margin: 10% auto;
+background-image:url("https://res.cloudinary.com/dekttdx5z/image/upload/v1507572002/_TicTac_PopupWINS_bgr_edited_lfmjtp.svg");
+ background-size:cover; 
+
+}
+#winnerAiP{
+position:absolute;
+top:106px;
+margin:auto;
+width:600px;
+text-align:center;
+font-size:50px;
+}
+#winnerPlayerP{
+position:absolute;
+top:106px;
+margin:auto;
+width:600px;
+text-align:center;
+font-size:50px;
+}
+#winnerDrawP{
+position:absolute;
+top:106px;
+margin:auto;
+width:600px;
+text-align:center;
+font-size:50px;
+ 
+}
+.bold900{
+  font-family: "Montserrat", sans-serif; 
+  font-weight:900;
+  
+}
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container-fluid mobileX">
+         
+       <div class="row ">
+        
+        
+         
+         <div class="col-xs-12 col-sm-0 d-block mx-auto">
+            
+       
+          <div class="titleBar"><p class="title1">TIC TAC TOE </p><p class="title2">GAME</p></div>
+           <div id="main">
+             
+             <div id="s00" class="s00Oran squareM waiting" onclick="move(0,0,'00')"></div>  
+             <div id="s01" class="s01Oran squareM waiting" onclick="move(0,1,'01')"></div> 
+             <div id="s02" class="s02Oran squareM waiting" onclick="move(0,2,'02')"></div>
+             <div id="s10" class="s10Oran squareM waiting" onclick="move(1,0,'10')"></div>  
+             <div id="s11" class="s11Oran squareM waiting" onclick="move(1,1,'11')"></div> 
+             <div id="s12" class="s12Oran squareM waiting" onclick="move(1,2,'12')"></div>
+             <div id="s20" class="s20Oran squareM waiting" onclick="move(2,0,'20')"></div>  
+             <div id="s21" class="s21Oran squareM waiting" onclick="move(2,1,'21')"></div> 
+             <div id="s22" class="s22Oran squareM waiting" onclick="move(2,2,'22')"></div>
+             
+           </div>
+             <center> 
+           <div id="menu">
+          
+           <div id="menuInner1">
+           <p><span style="color:#ff7919;"><i>RULES:</i></span><span style="color:#00dbe5;" class="bold900"> X</span><span style="color:#ffc100;"> AND</span><span style="font-weight:900;color:#00dbe5;"class="bold900"> O</span><span style="color:#ffc100;"> TAKE TURNS</span></p> </div> 
+           <div id="menuInner2">  
+            <p><span style="color:#ffc100;">IN MAKING THE</span><span style="color:#00dbe5;"class="bold900">&nbsp; FIRST&nbsp; MOVE</span></p> 
+           </div> 
+             </div> 
+           
+           <div id="menuBottom">
+         
+            <div id="firstDeco"></div>
+            <div id="reset"><p><i>RESET SESSION</i></p></div>
+            <div id="resetCap"></div> 
+            <div id="secondDeco"></div>
+        <div id="thirdDeco"></div>
+            <div id="leaderBoard"><p><i>LEADERBOARD</i></p></div> 
+            <div id="userIcon" class="userIconBlue"></div>
+            <div id="drawIcon"></div>
+            <div id="aiIcon" class="aiIconOran"></div>
+           <div id="userIconText">USER</div>
+            <div id="drawIconText">DRAW</div>
+            <div id="aiIconText">AI</div>
+            <div id="fourthDeco"></div>
+             <div id="userScore" class="userScoreBlue">0</div>
+            <div id="drawScore">0</div>
+            <div id="aiScore" class="userScoreOran">0</div>
+            <div id="bottomDeco"></div>
+            <div id="leaderBackground"></div>
+            </div>
+           </center>
+           
+        
+           
+          </div><!-- column -->  
+        
+         <div class="col-xs-0 col-sm-12"></div>
+          
+           
+           
+           
+        
+         
+           
+         
+         
+         
+         
+         
+        
+       </div><!--- row -->  
+       </div><!-- container -->
+         
+       <div id="popUp" class="popUp">
+       <div class="popUpInner">
+         <div id="popTop"></div>  
+         <div id="popCenterLeft"></div>  
+          <div id="popCenterRight"></div>
+         <div id="popCenterRightSprite"></div>
+            <div id="popBottom"></div> 
+         <div class="popO" onclick="choice('O')"></div> 
+         <div class="popX" onclick="choice('X')"></div> 
+       </div> 
+       </div>    
+        
+        
+         
+         <div id="gameOverAi" class="popUp"> 
+        <div class="winnerInner"> 
+          <div id="winnerAi"><p><span style="color:#ff9900;">COMPUTER </span> <span style="font-weight:900;color:#00dbe5;"><i>WON</i></span></p></div>
+          </div> 
+         </div>
+       
+       <div id="gameOverPlayer" class="popUp"> 
+        <div class="winnerInner"> 
+          <div id="winnerPlayer"><p><span style="color:#ff9900;">USER </span><span style="font-weight:900;color:#00dbe5;">WON</span></p></div>
+          </div> 
+         </div>  
+         
+       <div id="gameOverDraw" class="popUp"> 
+        <div class="winnerInner"> 
+          <div id="winnerDraw"><p><span style="color:#ff9900;">IT'S A </span><span style="font-weight:900;color:#00dbe5;"><i>DRAW</i></span></p></div>
+          </div> 
+         </div>  
+       <!-- /////////////// PC setup //////////////////// -->  
+         <div class="pc">
+       <center><div style="height:720px;width:973px;position:relative;">   
+        <div style="height:120px;width:600px;position:absolute;top:0;left:0;z-index:2;">
+        <div style="height:120px;width:600px;position:relative;">  
+          <div class="titleBarP">
+            <p><span style="font-weight:900;">TIC TAC TOE</span><span style="font-weight:300;"> GAME</span></p>
+              
+            </div></div></div>
+          
+            <div style="position:absolute;height:120px;width:345px;right:0px;top:0;">
+        
+        <div id="rules1P"> <p><span style="color:#ff7919;"><i>RULES:</i></span><span style="font-weight:900;color:#00dbe5;"> X</span><span style="color:#ffc100;"> AND</span><span style="font-weight:900;color:#00dbe5;"> O</span><span style="color:#ffc100;"> TAKE TURNS</span></p> </div>
+            
+       <div id="rules2P">    <p><span style="color:#ffc100;">IN MAKING THE</span><span style="font-weight:900;color:#00dbe5;">&nbsp; FIRST&nbsp; MOVE</span></p> </div>
+         
+         
+         
+         
+         
+         
+         </div>
+         
+         
+         
+          
+         <div id="boardP">
+           <div id="boardPInner">
+             <div id="p00" class="s00Oran squareP waiting" onclick="move(0,0,'00')"></div>  
+             <div id="p01" class="s01Oran squareP waiting" onclick="move(0,1,'01')"></div> 
+             <div id="p02" class="s02Oran squareP waiting" onclick="move(0,2,'02')"></div>
+            <div id="p10" class="s10Oran squareP waiting" onclick="move(1,0,'10')"></div>  
+             <div id="p11" class="s11Oran squareP waiting" onclick="move(1,1,'11')"></div> 
+             <div id="p12" class="s12Oran squareP waiting" onclick="move(1,2,'12')"></div>
+              <div id="p20" class="s20Oran squareP waiting" onclick="move(2,0,'20')"></div>        <div id="p21" class="s21Oran squareP waiting" onclick="move(2,1,'21')"></div> 
+             <div id="p22" class="s22Oran squareP waiting" onclick="move(2,2,'22')"></div>
+          </div>   
+         </div>
+       
+         
+         
+         <div style="position:absolute;width:345px;height:600px;bottom:0;right:0;">
+         <div id="menuInnerP"> 
+           <div id="firstDecoP"></div>
+            <div id="resetP"><p><i>RESET SESSION</i></p></div>
+           <div id="secondDecoP"></div>
+           <div id="thirdDecoP"></div>
+           <div id="bottomDecoP"></div>
+           <div id="userIconP" class="userIconBlue"></div>
+           <div id="drawIconP" class="drawIcon"></div>
+           <div id="aiIconP" class="aiIconOran"></div>
+           <div id="userIconTextP">USER</div>
+            <div id="drawIconTextP">DRAW</div>
+            <div id="aiIconTextP">AI</div>
+           <div id="fourthDecoP"></div>
+           <div id="userScoreP" class="userScoreBlue">0</div>
+            <div id="drawScoreP">0</div>
+            <div id="aiScoreP" class="userScoreOran">0</div>
+            <div id="leaderBackgroundP"></div>
+           <div id="leaderBoardP"><p><i>LEADERBOARD</i>
+          </div>  
+         </div>
+       
+              
+            </div><!-- main div-->
+              
+            </center> 
+           
+           
+           
+         </div><!-- container -->  
+       <div id="popUpP" class="popUpP">
+       <div class="popUpInnerP">
+         <div id="popTopP"></div>  
+        <div id="popCenterLeftP"></div>  
+          <div id="popCenterRightP"></div>
+         <div id="popCenterRightSpriteP"></div>
+            <div id="popBottomP"></div> 
+         <div class="popOP" onclick="choice('O')"></div> 
+         <div class="popXP" onclick="choice('X')"></div> 
+         <div id ="popPBackground"></div>
+       </div> 
+       </div>    
+        
+        
+         
+         <div id="gameOverAiP" class="popUpP"> 
+        <div class="winnerInnerP"> 
+          <div id="winnerAiP"><p><span style="color:#ff9900;">COMPUTER </span> <span style="font-weight:900;color:#00dbe5;"><i>WON</i></span></p></div>
+          </div> 
+         </div>
+       
+       <div id="gameOverPlayerP" class="popUpP"> 
+        <div class="winnerInnerP"> 
+          <div id="winnerPlayerP"><p><span style="color:#ff9900;">USER </span><span style="font-weight:900;color:#00dbe5;">WON</span></p></div>
+          </div> 
+         </div>  
+         
+       <div id="gameOverDrawP" class="popUpP"> 
+        <div class="winnerInnerP"> 
+          <div id="winnerDrawP"><p><span style="color:#ff9900;">IT'S A </span><span style="font-weight:900;color:#00dbe5;"><i>DRAW</i></span></p></div>
+          </div> 
+         </div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+  <script>
+    /////////////////////////////////////////// setting up variables///////////////////
+var scoreArray = [0,0,0];
+var game = ["new"];
+var winner = ["cant"];
+var whoPlays = [1];
+var xTurn = [];
+var yTurn = [];
+var board = [[0,0,0],[0,0,0],[0,0,0]];
+var turn = [" "];
+var down0 = [[0,0,0],[0,0],[1,0],[2,0]];
+var down1 = [[0,0,0],[0,1],[1,1],[2,1]];
+var down2 = [[0,0,0],[0,2],[1,2],[2,2]];
+var across0 = [[0,0,0],[0,0],[0,1],[0,2]];
+var across1 = [[0,0,0],[1,0],[1,1],[1,2]];
+var across2 = [[0,0,0],[2,0],[2,1],[2,2]];
+var diag1 = [[0,0,0],[0,0],[1,1],[2,2]];
+var diag2 = [[0,0,0],[0,2],[1,1],[2,0]];
+var high = [[0,0,0,0],[0,0],[0,2],[2,0],[2,2]];
+//////////////////////////////////// fork checking arrays
+var down0F = [[0,0,0],[0,0],[1,0],[2,0]];
+var down1F = [[0,0,0],[0,1],[1,1],[2,1]];
+var down2F = [[0,0,0],[0,2],[1,2],[2,2]];
+var across0F = [[0,0,0],[0,0],[0,1],[0,2]];
+var across1F = [[0,0,0],[1,0],[1,1],[1,2]];
+var across2F = [[0,0,0],[2,0],[2,1],[2,2]];
+var diag1F = [[0,0,0],[0,0],[1,1],[2,2]];
+var diag2F = [[0,0,0],[0,2],[1,1],[2,0]];
+
+///////////////////////////////////////////// graphics variables /////////////
+var gameOverAi = document.getElementById("gameOverAi");
+var gameOverPlayer = document.getElementById("gameOverPlayer");
+var gameOverDraw = document.getElementById("gameOverDraw");
+
+var gameOverAiP = document.getElementById("gameOverAiP");/// PC version//////////////////////
+var gameOverPlayerP = document.getElementById("gameOverPlayerP");/// PC version//////////////////////
+var gameOverDrawP = document.getElementById("gameOverDrawP");/// PC version//////////////////////
+
+var popUpP = document.getElementById("popUpP");/// PC version//////////////////////
+var popUp = document.getElementById("popUp");
+var resetP = document.getElementById("resetP");/// PC version//////////////////////
+var reset = document.getElementById("reset");
+
+
+var playerChoice = ["O"];
+var playerTurn = [" "];
+///////////////// opening choices //////////////////////////
+$(document).ready(function() {
+popUp.style.display = "block";
+popUpP.style.display = "block";  
+});
+////////// reset animation PC version /////////
+$( "#resetP" ).mouseenter(function() {
+$("#resetP").addClass("resetPUp");
+  
+$("#resetP").css("color","#8ff9f6");
+  
+$("#secondDecoP").addClass("secondDecoPUp");
+$("#firstDecoP").addClass("firstDecoPUp");  
+});
+$( "#resetP" ).mouseleave(function() {
+$("#resetP").css("color","#00a0d5");  
+$("#resetP").removeClass("resetPUp");
+$("#secondDecoP").removeClass("secondDecoPUp");
+$("#firstDecoP").removeClass("firstDecoPUp");  
+});
+
+
+
+
+
+//////////////////// reset button pc and mobile versions///////////////////////
+resetP.onclick = function() {
+if(playerTurn === "taken"){return;}
+$("#resetP").css("color","#ff9900"); 
+   
+setTimeout(function(){ 
+clearArrays();
+blue();  
+popUpP.style.display = "block";  
+}, 2000); 
+
+};
+
+
+reset.onclick = function() {
+if(playerTurn === "taken"){return;}
+$("#reset").css("color","#ff9900");  
+setTimeout(function(){ 
+clearArrays();
+blue();  
+popUp.style.display = "block";  
+}, 2000); 
+
+};
+///////////////////// player choice of X or O ///////////////
+function choice(selection){
+
+$("#reset").css("color","#00a0d5"); 
+  
+console.log("choice = " + selection);  
+scoreArray[0] = 0;scoreArray[1] = 0;scoreArray[2] = 0;// resetting score array 
+$("#userScore").html(scoreArray[0]);// updating scoreboard
+$("#drawScore").html(scoreArray[1]);// updating scoreboard  
+$("#aiScore").html(scoreArray[2]);// updating scoreboard 
+  
+$("#userScoreP").html(scoreArray[0]);// updating scoreboard
+$("#drawScoreP").html(scoreArray[1]);// updating scoreboard  
+$("#aiScoreP").html(scoreArray[2]);// updating scoreboard   
+  
+  
+  
+whoPlays[0] = 1;//////////// count to record who plays first odd=Player even=AI
+game[0] = "new";  
+playerChoice[0] = selection;// stores X or O as chosen by player
+  
+popUpP.style.display = "none";  
+popUp.style.display = "none";
+if(playerChoice[0] === "X"){
+blue();
+$("#userIcon").removeClass("userIconOran").addClass("userIconBlue");
+$("#aiIcon").removeClass("aiIconBlue").addClass("aiIconOran"); 
+$("#userScore").removeClass("userScoreOran").addClass("userScoreBlue");
+$("#aiScore").removeClass("aiScoreBlue").addClass("aiScoreOran"); 
+  
+$("#userIconP").removeClass("userIconOran").addClass("userIconBlue");/// pc version
+$("#aiIconP").removeClass("aiIconBlue").addClass("aiIconOran"); /// pc version
+$("#userScoreP").removeClass("userScoreOran").addClass("userScoreBlue");/// pc version
+$("#aiScoreP").removeClass("aiScoreBlue").addClass("aiScoreOran");/// pc version  
+  
+}
+if(playerChoice[0] === "O"){
+orange();
+$("#userIcon").removeClass("userIconBlue").addClass("userIconOran");
+$("#aiIcon").removeClass("aiIconOran").addClass("aiIconBlue");
+$("#userScore").removeClass("userScoreBlue").addClass("userScoreOran");
+$("#aiScore").removeClass("aiScoreOran").addClass("aiScoreBlue");  
+  
+$("#userIconP").removeClass("userIconBlue").addClass("userIconOran");/// pc version
+$("#aiIconP").removeClass("aiIconOran").addClass("aiIconBlue");/// pc version
+$("#userScoreP").removeClass("userScoreBlue").addClass("userScoreOran");/// pc version
+$("#aiScoreP").removeClass("aiScoreOran").addClass("aiScoreBlue"); /// pc version  
+} 
+  
+}
+
+
+
+
+
+
+
+
+///////////////////// change board color to Blue ////////////////////////
+function blue(){
+ if(board[0][0] === 0){ $("#s00").removeClass("s00Oran animateIt").addClass("s00Blue waiting");} 
+ if(board[0][1] === 0){ $("#s01").removeClass("s01Oran animateIt").addClass("s01Blue waiting");} 
+ if(board[0][2] === 0){ $("#s02").removeClass("s02Oran animateIt").addClass("s02Blue waiting");}  
+ if(board[1][0] === 0){ $("#s10").removeClass("s10Oran animateIt").addClass("s10Blue waiting");} 
+ if(board[1][1] === 0){ $("#s11").removeClass("s11Oran animateIt").addClass("s11Blue waiting");}  
+ if(board[1][2] === 0){ $("#s12").removeClass("s12Oran animateIt").addClass("s12Blue waiting");}  
+ if(board[2][0] === 0){ $("#s20").removeClass("s20Oran animateIt").addClass("s20Blue waiting");} 
+ if(board[2][1] === 0){ $("#s21").removeClass("s21Oran animateIt").addClass("s21Blue waiting");}  
+ if(board[2][2] === 0){ $("#s22").removeClass("s22Oran animateIt").addClass("s22Blue waiting");} 
+ /////////////////// PC version 
+ if(board[0][0] === 0){ $("#p00").removeClass("s00Oran animateIt").addClass("s00Blue waiting");} 
+ if(board[0][1] === 0){ $("#p01").removeClass("s01Oran animateIt").addClass("s01Blue waiting");} 
+ if(board[0][2] === 0){ $("#p02").removeClass("s02Oran animateIt").addClass("s02Blue waiting");}  
+ if(board[1][0] === 0){ $("#p10").removeClass("s10Oran animateIt").addClass("s10Blue waiting");} 
+ if(board[1][1] === 0){ $("#p11").removeClass("s11Oran animateIt").addClass("s11Blue waiting");}  
+ if(board[1][2] === 0){ $("#p12").removeClass("s12Oran animateIt").addClass("s12Blue waiting");}  
+ if(board[2][0] === 0){ $("#p20").removeClass("s20Oran animateIt").addClass("s20Blue waiting");} 
+ if(board[2][1] === 0){ $("#p21").removeClass("s21Oran animateIt").addClass("s21Blue waiting");}  
+ if(board[2][2] === 0){ $("#p22").removeClass("s22Oran animateIt").addClass("s22Blue waiting");} 
+  
+  
+}
+///////////////////// change board color to Orange ///////////////////////
+function orange(){///mobile
+ if(board[0][0] === 0){$("#s00").addClass("s00Oran waiting").removeClass("s00Blue animateIt");} 
+ if(board[0][1] === 0){$("#s01").addClass("s01Oran waiting").removeClass("s01Blue animateIt");} 
+ if(board[0][2] === 0){$("#s02").addClass("s02Oran waiting").removeClass("s02Blue animateIt");}  
+ if(board[1][0] === 0){$("#s10").addClass("s10Oran waiting").removeClass("s10Blue animateIt");} 
+ if(board[1][1] === 0){$("#s11").addClass("s11Oran waiting").removeClass("s11Blue animateIt");}  
+ if(board[1][2] === 0){$("#s12").addClass("s12Oran waiting").removeClass("s12Blue animateIt");} 
+ if(board[2][0] === 0){$("#s20").addClass("s20Oran waiting").removeClass("s20Blue animateIt");} 
+ if(board[2][1] === 0){$("#s21").addClass("s21Oran waiting").removeClass("s21Blue animateIt");} 
+ if(board[2][2] === 0){$("#s22").addClass("s22Oran waiting").removeClass("s22Blue animateIt");} 
+ /////////////////////////////// PC version 
+ if(board[0][0] === 0){$("#p00").addClass("s00Oran waiting").removeClass("s00Blue animateIt");} 
+ if(board[0][1] === 0){$("#p01").addClass("s01Oran waiting").removeClass("s01Blue animateIt");} 
+ if(board[0][2] === 0){$("#p02").addClass("s02Oran waiting").removeClass("s02Blue animateIt");}  
+ if(board[1][0] === 0){$("#p10").addClass("s10Oran waiting").removeClass("s10Blue animateIt");} 
+ if(board[1][1] === 0){$("#p11").addClass("s11Oran waiting").removeClass("s11Blue animateIt");}  
+ if(board[1][2] === 0){$("#p12").addClass("s12Oran waiting").removeClass("s12Blue animateIt");} 
+ if(board[2][0] === 0){$("#p20").addClass("s20Oran waiting").removeClass("s20Blue animateIt");} 
+ if(board[2][1] === 0){$("#p21").addClass("s21Oran waiting").removeClass("s21Blue animateIt");} 
+ if(board[2][2] === 0){$("#p22").addClass("s22Oran waiting").removeClass("s22Blue animateIt");} 
+  
+  
+  
+  
+  
+ }
+
+////////////////////////////// reset animation - Mobile version///////////////////
+$("#reset").click(function(){
+$("#reset").addClass("resetUp");
+$("#firstDeco").addClass("firstDecoUp"); 
+$("#secondDeco").addClass("secondDecoUp");   
+
+setTimeout(function(){ 
+$("#reset").removeClass("resetUp");
+$("#firstDeco").removeClass("firstDecoUp"); 
+$("#secondDeco").removeClass("secondDecoUp"); 
+
+}, 1000);
+}); 
+
+
+
+///////////////////////////// player move and filtering function
+function move(row,col,id){
+if(board[row][col] !== 0){return;}//check to see if space already occupied
+if(playerTurn[0] === "taken"){return;}// check to see if player has already moved
+playerTurn[0] = "taken";//// registering player move as used 
+/////////////////////// registering player move  
+
+$("#s"+id).removeClass("waiting").addClass("animateIt");/// animate player move mobile
+$("#p"+ id).removeClass("waiting").addClass("animateIt");/// animate player move PC  
+board[row][col] = 2; // update board array with player move  
+updateBoard(); // update test board
+update(); // update row and column arrays   
+setTimeout(function(){
+if(playerChoice[0] === "O"){blue();} // change board color
+if(playerChoice[0] === "X"){orange();}// change board color 
+}, 1000); 
+checkDraw();
+if(winner[0] === "DRAW"){main();}
+else{
+setTimeout(function(){
+main();  
+}, 2500);
+}  
+}
+////////////////////////////// displaying result of game and restarting
+function endGame(str){
+//scoreArray = [0,0,0];  
+console.log("hello endgame");
+setTimeout(function(){  
+if(str === "PLAYER"){
+gameOverPlayer.style.display = "block";
+gameOverPlayerP.style.display = "block"; 
+scoreArray[0] +=1;
+}
+if(str === "AI"){
+gameOverAi.style.display = "block"; 
+gameOverAiP.style.display = "block";   
+scoreArray[2] +=1;  
+}  
+if(str === "DRAW"){
+gameOverDraw.style.display = "block";
+gameOverDrawP.style.display = "block";  
+scoreArray[1] +=1;  
+}
+}, 2000); 
+setTimeout(function(){
+  
+gameOverPlayer.style.display = "none";   
+gameOverAi.style.display = "none";   
+gameOverDraw.style.display = "none";
+
+gameOverPlayerP.style.display = "none";   
+gameOverAiP.style.display = "none";   
+gameOverDrawP.style.display = "none";  
+  
+$("#userScore").html(scoreArray[0]);
+$("#drawScore").html(scoreArray[1]);  
+$("#aiScore").html(scoreArray[2]);  
+
+$("#userScoreP").html(scoreArray[0]);
+$("#drawScoreP").html(scoreArray[1]);  
+$("#aiScoreP").html(scoreArray[2]);   
+  
+newGame();
+}, 4000);   
+}
+/////////////////////////////////// resetting conditions to start a new game
+function newGame(){
+console.log("newgame here");
+winner[0] = "cant";
+game[0] ="new";  
+clearArrays();
+whoPlays[0] += 1;
+console.log("who plays = " + whoPlays[0]);  
+if(whoPlays[0] % 2 === 0){///////////// if computer's turn to start game
+if(playerChoice[0] === "X"){orange();} 
+if(playerChoice[0] === "O"){blue();}  
+playerTurn[0] = "taken"; 
+main();
+} 
+if(whoPlays[0] % 2 !== 0){/// if player's turn to start game
+if(playerChoice[0] === "X"){blue();} 
+if(playerChoice[0] === "O"){orange();} 
+playerTurn[0] = " ";
+}
+}
+
+
+/////////////////////////////////// check for forks - enemy and friendly
+function fork(val){
+console.log("checking for forks"); 
+down0F = updateArrays([[0,0,0],[0,0],[1,0],[2,0]]);
+down1F = updateArrays([[0,0,0],[0,1],[1,1],[2,1]]);
+down2F = updateArrays([[0,0,0],[0,2],[1,2],[2,2]]);
+across0F = updateArrays([[0,0,0],[0,0],[0,1],[0,2]]);
+across1F = updateArrays([[0,0,0],[1,0],[1,1],[1,2]]);
+across2F = updateArrays([[0,0,0],[2,0],[2,1],[2,2]]);
+diag1F = updateArrays([[0,0,0],[0,0],[1,1],[2,2]]);
+diag2F = updateArrays([[0,0,0],[0,2],[1,1],[2,0]]);
+var tester = [];  
+tester.push(down0F,down1F,down2F,across0F,across1F,across2F,diag1F,diag2F); 
+var testerReduced = [];
+  
+for(k=0;k<8;k++){
+if(reduce(tester[k][0]) === val){
+testerReduced.push(tester[k]);} 
+} 
+var sorter = [];
+for(h=0;h<testerReduced.length;h++){
+sorter.push(testerReduced[h][1],testerReduced[h][2],testerReduced[h][3]);
+}
+for(m=0;m<sorter.length;m++){
+for(n=m+1;n<sorter.length;n++){
+if(sorter[m][0] === sorter[n][0] && sorter[m][1] === sorter[n][1] && board[(sorter[m][0])][(sorter[m][1])] === 0){
+board[(sorter[m][0])][(sorter[m][1])] = 6;aiSpriteMove(sorter[m][0],sorter[m][1]);turn[0] = "taken";
+if(val === 6){  
+console.log("Attacking fork selected =" + sorter[m]);m=10;n=10;return;}
+if(val === 2){  
+console.log("Defending fork selected =" + sorter[m]);m=10;n=10;return;}
+
+}
+  
+ 
+
+  
+}
+}  
+  
+
+console.log(sorter); 
+  
+return;  
+  
+  
+}
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////// main function /////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+function main(){
+turn[0] = "unused";/// logging AI turn as unused  
+checkDraw();
+if(winner[0] === "DRAW" && game[0] === "old"){turn[0] = "taken";}  
+checkWinner();
+if(winner[0] === "PLAYER"){turn[0] = "taken";}
+
+
+////////// checks to see if AI plays first and if so makes random move 
+if(game[0] === "new" && whoPlays[0] % 2 === 0){// detecting new game to apply random first move
+xTurn[0] = Math.floor(Math.random() * 3);
+yTurn[0] = Math.floor(Math.random() * 3);
+board[(xTurn[0])][(yTurn[0])] = 6;
+
+setTimeout(function(){
+aiSpriteMove(xTurn[0],yTurn[0]);  
+}, 2000);
+turn[0] = "taken";
+}// taking first move as random  
+
+game[0]="old"; 
+
+  
+//////////////////// anti-forking rules ////////////////////  
+if(turn[0] !== "taken"){
+
+if(reduce(down0[0]) === 2 && reduce(down1[0]) === 6 && reduce(down2[0]) === 2 && (reduce(diag1[0]) === 10 || reduce(diag2[0]) === 10)){console.log("anti-fork");
+processLow();updateBoard();update();   
+}
+  
+if((reduce(diag1[0]) === 10 && board[0][1] === 0 && board[0][2] === 0 && board[1][0] === 0 && board[1][2] === 0 && board[2][0] === 0 && board[2][1] === 0) || (reduce(diag2[0]) === 10 && board[0][0] === 0 && board[0][1] === 0 && board[1][0] === 0 && board[1][2] === 0 && board[2][1] === 0 && board[2][2] === 0) ){console.log("anti-fork");
+processHigh();updateBoard();update();   
+}   
+}
+  
+
+//////////////////////////////////////////////////////////////
+if(turn[0] !== "taken"){  
+processAttack(down0,12);/// checking for kill options
+processAttack(down1,12);
+processAttack(down2,12); 
+processAttack(across0,12);                    
+processAttack(across1,12);
+processAttack(across2,12);
+processAttack(diag1,12);
+processAttack(diag2,12); 
+updateBoard();/// updating display
+update();/// updating arrays////  
+}
+/////////////////////////////////////////////////////////////////////////////// 
+if(turn[0] !== "taken"){  
+processDefend(down0);/// checking rows and columns for danger and defending
+processDefend(down1);
+processDefend(down2);  
+processDefend(across0);
+processDefend(across1);
+processDefend(across2);
+processDefend(diag1);
+processDefend(diag2);
+updateBoard(); /// updating display
+update();/// updating arrays//// 
+}
+///////////////////////////// 
+//////////////////////////// check for forks
+if(turn[0] !== "taken"){
+fork(6);
+updateBoard();update();  
+}   
+  
+  
+  
+/////////////////// check for enemy forks  
+  
+if(turn[0] !== "taken"){
+fork(2);
+updateBoard();update();  
+}     
+  
+  
+  
+
+  
+//////////////////////////////////
+if(turn[0] !== "taken" && board[1][1] === 0){// checking if center is vacant
+board[1][1] = 6;updateBoard();update();turn[0] = "taken";aiSpriteMove(1,1);
+} 
+  
+  
+  
+ 
+    
+///////////////////////////////////////////////////////////////////////////////////
+if(turn[0] !== "taken"){
+processAttack(down1,6);  
+processAttack(across1,6);  
+processAttack(diag1,6);/// checking for lesser attack options
+processAttack(diag2,6); 
+processAttack(down0,6);
+processAttack(down2,6);  
+processAttack(across0,6);
+processAttack(across2,6);
+updateBoard();/// updating old display  
+update();/// updating arrays////  
+} 
+if(turn[0] !== "taken"){ // looking for empty corners 
+processHigh();updateBoard();/// updating display  
+}    
+  
+  
+if(turn[0] !== "taken"){ // looking for low-value empty spaces 
+processLow();updateBoard();/// updating display  
+} 
+update();/// updating arrays////    
+//console.log(board);
+  
+  
+
+checkDraw(); 
+checkWinner();    
+
+if(winner[0] === "PLAYER" || winner[0] === "AI" || winner[0] === "DRAW"){
+playerTurn[0] = "taken";
+endGame(winner[0]);
+} 
+ 
+
+}
+/////////////////////////////////////// end of main //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////// end of main //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////finding low-value empty spaces
+function processLow(){
+console.log("processLow");  
+if(board[0][1] === 0){board[0][1] = 6;turn[0] = "taken";aiSpriteMove(0,1);return;}  
+if(board[1][0] === 0){board[1][0] = 6;turn[0] = "taken";aiSpriteMove(1,0);return;} 
+if(board[1][2] === 0){board[1][2] = 6;turn[0] = "taken";aiSpriteMove(1,2);return;}   
+if(board[2][1] === 0){board[2][1] = 6;turn[0] = "taken";aiSpriteMove(2,1);return;} 
+return;
+}
+////////////////////// looking for open spaces to attack into
+function attack(arr){
+console.log("attack");
+if(arr[0][0] === 0){ board[(arr[1][0])][(arr[1][1])] = 6;aiSpriteMove(arr[1][0],arr[1][1]);updateBoard();turn[0] = "taken";return;}
+if(arr[0][1] === 0){ board[(arr[2][0])][(arr[2][1])] = 6;aiSpriteMove(arr[2][0],arr[2][1]);updateBoard();turn[0] = "taken";return;} 
+if(arr[0][2] === 0){ board[(arr[3][0])][(arr[3][1])] = 6;aiSpriteMove(arr[3][0],arr[3][1]);updateBoard();turn[0] = "taken";return;}  
+}
+
+////////////////////////// looking for blocking moves
+function defend(arr){
+console.log("defend");
+if(arr[0][0] === 0){ board[(arr[1][0])][(arr[1][1])] = 6;aiSpriteMove(arr[1][0],arr[1][1]);turn[0] = "taken";}
+if(arr[0][1] === 0){ board[(arr[2][0])][(arr[2][1])] = 6;aiSpriteMove(arr[2][0],arr[2][1]);turn[0] = "taken";} 
+if(arr[0][2] === 0){ board[(arr[3][0])][(arr[3][1])] = 6;aiSpriteMove(arr[3][0],arr[3][1]);turn[0] = "taken";}  
+updateBoard();
+return;
+}
+
+
+////////////////////////////// updating game screen - defunct!!!!!!!!!!!!!!!!
+function updateBoard(){
+ 
+}
+
+///////////////////////// finding sum of array so attack option can be calculated
+function reduce(arr){
+var reduced = arr.reduce(function(sum, value) {
+  return sum + value;
+}, 0);  
+return reduced;  
+}
+/////////////////////////////////// calculating if defence is necessary
+function processDefend(arr){
+if(turn[0] === "taken"){return arr;}
+console.log("processDefend");
+if( reduce(arr[0]) === 4 ){defend(arr);turn[0] = "taken";}
+return;
+}
+
+////////////////////////// choosing a corner to play into 
+function processHigh(){
+console.log("processHigh");  
+if(board[0][0] === 0){board[0][0] = 6;turn[0] = "taken";aiSpriteMove(0,0); return;} 
+if(board[0][2] === 0){board[0][2] = 6;turn[0] = "taken";aiSpriteMove(0,2); return;}
+if(board[2][0] === 0){board[2][0] = 6;turn[0] = "taken";aiSpriteMove(2,0); return;}  
+if(board[2][2] === 0){board[2][2] = 6;turn[0] = "taken";aiSpriteMove(2,2); return;}
+return;
+}
+/////////////////////////////////////// calculating attack options
+function processAttack(arr,num){
+if(turn[0] === "taken"){return;}
+console.log("processAttack");  
+if(reduce(arr[0]) === num ){attack(arr);turn[0] = "taken";return;}
+return;
+}
+////////////////////////////// updating row and column arrays with new data
+function updateArrays(arr){
+//console.log("updateArrays");  
+arr[0][0] = board[(arr[1][0])][(arr[1][1])];  
+arr[0][1] = board[(arr[2][0])][(arr[2][1])]; 
+arr[0][2] = board[(arr[3][0])][(arr[3][1])];
+return arr;
+}
+//////////////////////// arrays processed by updateArrays
+function update(){
+down0 = updateArrays(down0);/// updating arrays///////////////////
+down1 = updateArrays(down1);
+down2 = updateArrays(down2);  
+across0 = updateArrays(across0);
+across1 = updateArrays(across1);
+across2 = updateArrays(across2);
+diag1 = updateArrays(diag1);
+diag2 = updateArrays(diag2);    
+return;  
+  
+}
+  
+
+
+  
+////////////////////////////// Checking for win situation
+function checkWinner(){
+if( reduce(down0[0]) === 18  || reduce(down1[0]) === 18 || reduce(down2[0]) === 18 || reduce(across0[0]) === 18 || reduce(across1[0]) === 18 || reduce(across2[0]) === 18 || reduce(diag1[0]) === 18 || reduce(diag2[0]) === 18){winner[0] = "AI"; return;}
+           
+if( (reduce(down0[0]) === 6 && down0[0][1] === 2) || (reduce(down1[0]) === 6 && down1[0][1] === 2) || (reduce(down2[0]) === 6 && down2[0][1] === 2) || (reduce(across0[0]) === 6 && across0[0][1] === 2) || (reduce(across1[0]) === 6 && across1[0][1] === 2) || (reduce(across2[0]) === 6 && across2[0][1] === 2) || (reduce(diag1[0]) === 6 && diag1[0][1] === 2) || (reduce(diag2[0]) === 6 && diag2[0][1] === 2) ){winner[0] = "PLAYER"; return;}          
+}
+///////////////////////////////// checking to see if game is a draw
+function checkDraw(){
+
+for(i=0;i<3;i++){
+if(board[i][0] === 0 || board[i][1] === 0 || board[i][2] === 0){return;} 
+}
+winner[0] = "DRAW";   
+return;
+}  
+
+
+///////////////////////////////// AI sprite controller
+function aiSpriteMove(x,y){
+$("#s"+x+y).removeClass("waiting").addClass("animateIt");
+$("#p"+x+y).removeClass("waiting").addClass("animateIt");// pc version  
+  
+  
+setTimeout(function(){
+if(playerChoice[0] === "X"){blue();} // change board color
+if(playerChoice[0] === "O"){orange();}// change board color 
+}, 1000); 
+setTimeout(function(){
+if(winner[0] === "cant"){  
+playerTurn[0] = " ";} 
+  
+}, 1500);  
+  
+  
+}  
+////////////////////////////// resetting arrays to zero     
+function clearArrays(){
+board[0] = [0,0,0];
+board[1] = [0,0,0];
+board[2] = [0,0,0];  
+down0[0] = [0,0,0];
+down1[0] = [0,0,0];
+down2[0] = [0,0,0];
+across0[0] = [0,0,0];
+across1[0] = [0,0,0];
+across2[0] = [0,0,0];
+diag1[0] = [0,0,0];
+diag2[0] = [0,0,0];
+}
+  </script>
+
+</body>
+</html>

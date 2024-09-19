@@ -1,0 +1,8 @@
+* text=auto
+
+server/game_server/file/all/*.html linguist-documentation
+server/game_server/file/pc/*.html linguist-documentation
+src/css/*.css linguist-documentation
+src/css/topic/*.css linguist-documentation
+
+src/fon/*.php linguist-documentation

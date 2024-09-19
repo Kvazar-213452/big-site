@@ -1,0 +1,22 @@
+@mixin modal-base($width, $height, $padding) {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: $padding;
+  transform: translate(-50%, -50%);
+  width: $width;
+  height: $height;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  background-color: $background-color;
+}
+
+@mixin hover_bor_color($sl_1, $sl_2, $sl_3) {
+  border: solid $sl_3 $sl_1;
+  color: $sl_2;
+}
+
+@mixin hover_bor_opti($sl_1, $sl_2, $sl_3) {
+  border: solid $sl_3 $sl_1 !important;
+  opacity: $sl_2 !important;
+}

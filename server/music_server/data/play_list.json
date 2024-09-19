@@ -1,0 +1,8 @@
+[
+    [
+        "code",
+        "server/music_server/img/play_list/1.png",
+        "server/music_server/music/play_list/main/",
+        ["main.mp3", "sin.mp3"]
+    ]
+]

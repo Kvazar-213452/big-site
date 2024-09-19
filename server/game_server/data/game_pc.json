@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Snake",
+        "img_url": "server/game_server/file/img/game/1.png",
+        "url_game":"server/game_server/file/pc/snake.html"
+    },
+    {
+        "name": "Races",
+        "img_url": "server/game_server/file/img/game/2.png",
+        "url_game":"server/game_server/file/pc/races.html"
+    },
+    {
+        "name": "Rain",
+        "img_url": "server/game_server/file/img/game/3.png",
+        "url_game":"server/game_server/file/pc/rain.html"
+    },
+    {
+        "name": "Tennis",
+        "img_url": "server/game_server/file/img/game/4.png",
+        "url_game":"server/game_server/file/pc/tennis.html"
+    },
+    {
+        "name": "Tetris",
+        "img_url": "server/game_server/file/img/game/5.png",
+        "url_game":"server/game_server/file/pc/tetris.html"
+    },
+    {
+        "name": "tic-tac-toe-cuber",
+        "img_url": "server/game_server/file/img/game/6.png",
+        "url_game":"server/game_server/file/pc/tic-tac-toe-cuber.html"
+    },
+    {
+        "name": "React-checkers-ai",
+        "img_url": "server/game_server/file/img/game/7.png",
+        "url_game":"server/game_server/file/pc/react-checkers-ai.html"
+    },
+    {
+        "name": "Reactjscheckers",
+        "img_url": "server/game_server/file/img/game/8.png",
+        "url_game":"server/game_server/file/pc/reactjscheckers.html"
+    }
+]

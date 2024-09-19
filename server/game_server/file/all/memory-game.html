@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Memory Game Vanilla JS</title>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Orbitron:500,900" rel="stylesheet">
+	<style>
+		* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-transform: capitalize;
+  font-family: 'Ubuntu', sans-serif;
+  outline: none;
+}
+
+body {
+
+  background: -webkit-gradient(linear, left top, right top, from(rgba(4,191,212,0.9)), to(rgba(117,8,161,0.9)));
+
+  background: -webkit-linear-gradient(left, rgba(4,191,212,0.9) 0%, rgba(117,8,161,0.9) 100%);
+
+  background: -o-linear-gradient(left, rgba(4,191,212,0.9) 0%, rgba(117,8,161,0.9) 100%);
+
+  background: linear-gradient(-270deg, rgba(4,191,212,0.9) 0%, rgba(117,8,161,0.9) 100%);
+}
+
+body::after {
+  content: '';
+  background: url('https://svgshare.com/i/7cp.svg');
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(8deg);
+  }
+}
+.carbon {
+  background: #2a334c;
+  border-radius: 4px;
+  padding: 10px 30px 10px 30px;
+  width: 65%;
+  height: 85%;
+  margin: 60px auto 10px auto;
+  -webkit-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+  -webkit-box-shadow: 2px 4px 24px black;
+          box-shadow: 2px 4px 24px black;
+}
+
+.tabbar {
+  height: 50px;
+  position: relative;
+  color: white;
+  padding: 1px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.tabbar > div {
+  padding-left: 10px;
+  position: absolute;
+  top: 14px;
+  left: 0;
+  color: #ff5f56;
+  width: 100%;
+}
+
+.tabbar > div > span,
+h4 {
+  display: inline;
+}
+
+h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 400;
+}
+
+h4 > span {
+  font-family: 'Orbitron', sans-serif;
+  color: #27c93f;
+}
+
+.time,
+.counter {
+  color: #ffbe2e;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+button {
+  font-family: 'Orbitron', sans-serif;
+  border-radius: 3px;
+  background-color: #ff5f56;
+  width: 100px;
+  height: 30px;
+  top: -3px;
+  right: 15px;
+  position: absolute;
+  font-size: 20px;
+  color: white;
+  -webkit-box-shadow: 2px 2px 2px #ff5f56;
+          box-shadow: 2px 2px 2px #ff5f56;
+  border: 1px solid rgba(0, 0, 0, 0.342);
+}
+
+button:active {
+  -webkit-box-shadow: 1px 0px 1px #ff5f56;
+          box-shadow: 1px 0px 1px #ff5f56;
+  height: 32px;
+}
+
+.panel {
+  background-color: #282a36;
+  padding-left: 10px;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+.panel .circle {
+  border-radius: 50%;
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+}
+.panel__one {
+  background-color: #ff5f56;
+}
+.panel__two {
+  background-color: #ffbe2e;
+}
+.panel__three {
+  background-color: #27c93f;
+  position: relative;
+}
+
+.circle:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.form {
+  background-color: #282a36;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 10px;
+  margin-bottom: 50px;
+  -webkit-box-shadow: -1px 7px 25px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 7px 25px 0px rgba(0, 0, 0, 0.75);
+}
+.box {
+  height: 110px;
+  width: 107px;
+  margin: 6px;
+  display: inline-block;
+  background: #282a36;
+  border-left: 1px solid hsl(220, 100%, 50%);
+  border: 5px solid hsl(220, 100%, 50%);
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  animation: rainbow 5s infinite alternate;
+  -ms-animation: rainbow 5s infinite alternate;
+  -moz-animation: rainbow 5s infinite alternate;
+  -webkit-animation: rainbow 5s infinite alternate;
+  -webkit-transition: all 0.7s ease-in-out;
+  -o-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  cursor: pointer;
+  -webkit-box-shadow: 3px 4px 22px 2px black;
+          box-shadow: 3px 4px 22px 2px black;
+}
+
+@keyframes rainbow {
+  0% {
+    border-color: hsla(343, 86%, 62%, 0.3);
+  }
+  100% {
+    border-color: hsla(211, 99%, 40%, 0.3);
+  }
+}
+
+@-webkit-keyframes rainbow {
+  0% {
+    border-color: hsl(0, 100%, 50%, 0.3);
+  }
+  100% {
+    border-color: hsl(255, 100%, 50%, 0.3);
+  }
+}
+
+.backside {
+  padding: 5px;
+  margin: 0;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background: rgba(117,8,161,.7);
+  overflow: hidden;
+  position: relative;
+  border-top-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.backside > i {
+  position: absolute;
+  font-size: 55px;
+  top: 0;
+  left: 0;
+  -webkit-transform: translate(27px, 30px);
+      -ms-transform: translate(27px, 30px);
+          transform: translate(27px, 30px);
+  color: snow; 
+}
+.flipped,
+.backside {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  border: none;
+}
+
+.matchingcards {
+  background: #ffbe2e;
+  -webkit-transition: all 1s ease-in-out 1s;
+  -o-transition: all 1s ease-in-out 1s;
+  transition: all 1s ease-in-out 1s;
+}
+
+.matchingcards > i {
+	color:black;
+}
+
+@media screen and (max-width: 1070px) {
+ 
+  .box{
+    height: 80px;
+    width: 85px;
+    margin: 5px;
+    border-width: 2px;
+    margin-top:-4px;
+  }
+/*   *{
+    font-size:15px;
+  } */
+     .backside > i {
+      -webkit-transform: translate(16px, 16px);
+          -ms-transform: translate(16px, 16px);
+              transform: translate(16px, 16px);
+  }
+}
+@media screen and (max-width: 1020px) {
+  body {
+    background: -webkit-gradient(linear, left top, right top, from(#0ABFBC), to(#FC354C));
+    background: -webkit-linear-gradient(left, #0ABFBC, #FC354C);
+    background: -o-linear-gradient(left, #0ABFBC, #FC354C);
+    background: linear-gradient(to right, #0ABFBC, #FC354C); 
+  }
+  .box{
+      height: 80px;
+      width: 75px;
+      margin: 5px;
+    font-size:5%;
+  }
+  span {
+    font-size: 14px;
+  }
+   .backside > i {
+      -webkit-transform: translate(10px, 16px);
+          -ms-transform: translate(10px, 16px);
+              transform: translate(10px, 16px);
+  }
+}
+@media screen and (max-width: 760px) {
+  body {
+     background: -webkit-gradient(linear, left top, right top, from(#f857a6), to(#ff5858));
+     background: -webkit-linear-gradient(left, #f857a6, #ff5858);
+     background: -o-linear-gradient(left, #f857a6, #ff5858);
+     background: linear-gradient(to right, #f857a6, #ff5858); 
+  }
+  .box{
+      height: 70px;
+      width: 68px;
+      margin: 4px;
+  }
+  
+  .backside > i {
+      -webkit-transform: translate(10px, 10px);
+          -ms-transform: translate(10px, 10px);
+              transform: translate(10px, 10px);
+  }
+  
+    .counter,.time,span {
+    font-size: 10px;
+  }
+
+}
+@media screen and (max-width: 455px) {
+  body {
+      background: -webkit-gradient(linear, left top, right top, from(#d53369), to(#cbad6d));
+      background: -webkit-linear-gradient(left, #d53369, #cbad6d);
+      background: -o-linear-gradient(left, #d53369, #cbad6d);
+      background: linear-gradient(to right, #d53369, #cbad6d);
+   
+  }
+  .box{
+    height: 35px;
+    width: 35px;
+    margin: 8px;
+    font-size: 15px;
+  }
+
+  .backside > i {
+  font-size: 15px;
+    color:white;
+  }
+  button{
+    font-size:7px;
+    width:33px;
+  }
+  .counter,.time {
+    font-size: 14px;
+  }
+
+}
+	</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<body>
+	<!-- style was inspired by CARBON => https://www.carbon.now.sh -->
+	<div class="carbon">
+		<div class="panel">
+			<div class="panel__one circle"></div>
+			<div class="panel__two circle"></div>
+			<div class="panel__three circle">
+				<!--<input type="checkbox" class="toggler3"> -->
+			</div>
+		</div>
+		<!-- end of panel -->
+		<div class="container">
+
+			<div class="box box1">
+				<div class="box backside">
+					<i class="far fa-gem"></i>
+				</div>
+			</div>
+
+			<div class="box box2">
+				<div class="box backside">
+					<i class="far fa-gem"></i>
+				</div>
+			</div>
+
+			<div class="box box3">
+				<div class="box backside">
+					<i class="fas fa-bomb"></i>
+				</div>
+			</div>
+
+			<div class="box box4">
+				<div class="box backside">
+					<i class="fas fa-bomb"></i>
+				</div>
+			</div>
+
+			<div class="box box5">
+				<div class="box backside">
+					<i class="fas fa-dizzy"></i>
+				</div>
+			</div>
+
+			<div class="box box6">
+				<div class="box backside">
+					<i class="fas fa-dizzy"></i>
+				</div>
+			</div>
+
+			<div class="box box7">
+				<div class="box backside">
+					<i class="fas fa-cannabis"></i>
+				</div>
+			</div>
+
+			<div class="box box8">
+				<div class="box backside">
+					<i class="fas fa-cannabis"></i>
+				</div>
+			</div>
+
+			<div class="box box9">
+				<div class="box backside">
+					<i class="fas fa-helicopter"></i>
+				</div>
+			</div>
+
+			<div class="box box10">
+				<div class="box backside">
+					<i class="fas fa-helicopter"></i>
+				</div>
+			</div>
+
+			<div class="box box11">
+				<div class="box backside">
+					<i class="fas fa-chess"></i>
+				</div>
+			</div>
+
+			<div class="box box12">
+				<div class="box backside">
+					<i class="fas fa-chess"></i>
+				</div>
+			</div>
+
+			<div class="box box13">
+				<div class="box backside">
+					<i class="fab fa-js-square"></i>
+				</div>
+			</div>
+
+			<div class="box box14">
+				<div class="box backside">
+					<i class="fab fa-js-square"></i>
+				</div>
+			</div>
+
+			<div class="box box15">
+				<div class="box backside">
+					<i class="fas fa-cocktail"></i>
+				</div>
+			</div>
+
+			<div class="box box16">
+				<div class="box backside">
+					<i class="fas fa-cocktail"></i>
+				</div>
+			</div>
+
+			<div class="box box17">
+				<div class="box backside">
+					<i class="fas fa-dice"></i>
+				</div>
+			</div>
+
+			<div class="box box18">
+				<div class="box backside">
+					<i class="fas fa-dice"></i>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end of MAIN   -->
+	<div class="carbon tabbar">
+
+		<div>
+			<span>{</span>
+			<h4>
+				<span>moves:</span>
+				<span class="counter"> 0 </span>,
+				<span>time_elapsed:</span>
+				<span class="time">00:00</span>
+			</h4>
+			<span>}</span>
+
+			<button onclick="startGame()">START</button>
+		</div>
+
+	</div>
+	<!-- <p>by Roektman.com</p> -->
+</body>
+<!-- partial -->
+<script>
+	'use strict';
+
+const cards = {
+	box1: 'box2',
+	box2: 'box1',
+	box3: 'box4',
+	box4: 'box3',
+	box5: 'box6',
+	box6: 'box5',
+	box7: 'box8',
+	box8: 'box7',
+	box9: 'box10',
+	box10: 'box9',
+	box11: 'box12',
+	box12: 'box11',
+	box13: 'box14',
+	box14: 'box13',
+	box15: 'box16',
+	box16: 'box15',
+	box17: 'box18',
+	box18: 'box17'
+};
+
+//CARBON == MAIN PANEL !
+const carbon = document.querySelector('.carbon');
+const time = document.querySelector('.time');
+const counter = document.querySelector('.counter');
+const circle1 = document.querySelector('.panel__one');
+const circle2 = document.querySelector('.panel__two');
+const circle3 = document.querySelector('.panel__three');
+const container = document.querySelector('.container');
+const box = Array.from(document.querySelectorAll('.box'));
+const audio = new Audio('https://loudlinks.rocks/sounds/mp3/magic.mp3');
+
+let correct_flips = 0;
+let last_flipped = [];
+let moves = 0;
+let seconds = 0;
+let minutes = 0;
+let seconds_str = '';
+let minutes_str = '';
+let timer_observer;
+
+container.innerHTML = '';
+
+function flipOnClick(e) {
+	moves++;
+	counter.innerHTML = moves;
+	const element = e.target;
+	last_flipped.push(element);
+	element.classList.add('flipped');
+	// console.log(last_flipped.length);
+	compareFlipped(last_flipped);
+}
+
+function compareFlipped(array) {
+	if (array.length > 2) {
+		array.forEach(el => el.classList.remove('flipped'));
+		last_flipped = [];
+	}
+	if (array.length == 2) {
+		const card1 = array[0].classList[1];
+		const card2 = array[1].classList[1];
+		// console.log(cards[card1], cards[card2]);
+		if (cards[card1] == card2 || cards[card2] == card1) {
+			// console.log('Yay its a match');
+			const c1 = document
+				.getElementsByClassName(card1)[0]
+				.firstElementChild.classList.add('matchingcards');
+			const c2 = document
+				.getElementsByClassName(card2)[0]
+				.firstElementChild.classList.add('matchingcards');
+			correct_flips += 1;
+			last_flipped = [];
+		} else {
+			setTimeout(() => {
+				array.forEach(el => el.classList.remove('flipped'));
+				last_flipped = [];
+			}, 700);
+		}
+	}
+}
+
+function spreadCards(array) {
+	let new_Arr = array.filter(el => array.indexOf(el) % 2 == 0);
+	while (0 < new_Arr.length) {
+		const num = Math.floor(Math.random() * new_Arr.length);
+		const pick = new_Arr[num];
+		container.appendChild(pick);
+		// console.log(container);
+		new_Arr.splice(num, 1);
+	}
+}
+
+function startWatching(seconds, minutes) {
+	timer_observer = setInterval(() => {
+		seconds > 58 ? ((minutes += 1), (seconds = 0)) : (seconds += 1);
+		seconds_str = seconds > 9 ? `${seconds}` : `0${seconds}`;
+		minutes_str = minutes > 9 ? `${minutes}` : `0${minutes}`;
+		time.innerHTML = `${minutes_str}:${seconds_str}`;
+		if (correct_flips >= 9) {
+			audio.play();
+			clearInterval(timer_observer);
+			gameWonParty(moves);
+			return;
+		}
+		// console.log(minutes, seconds_str);
+	}, 1000);
+}
+
+function startGame() {
+	correct_flips = 0;
+	last_flipped = [];
+	moves = 0;
+	seconds = 0;
+	minutes = 0;
+	seconds_str = '';
+	minutes_str = '';
+	time.innerHTML = 'XX:XX';
+	counter.innerHTML = '0';
+	container.innerHTML = '';
+	box.forEach(el => el.classList.remove('flipped'));
+	clearInterval(timer_observer);
+	spreadCards(box);
+	container.childNodes.forEach(node =>
+		node.firstElementChild.classList.remove('matchingcards')
+	);
+	startWatching(seconds, minutes);
+}
+
+function gameWonParty(moves) {
+	// const audio = new Audio('https://loudlinks.rocks/sounds/mp3/magic.mp3');
+	audio.play();
+	// alert(`You Won with just ${moves} moves !`);
+	//NOTE: make a fancy celebration with canvas
+}
+
+box.forEach(el => el.addEventListener('click', flipOnClick));
+
+circle1.addEventListener('click', (e) => {
+	clearInterval(timer_observer);
+	container.innerHTML = '';
+	time.innerHTML = 'XX:XX';
+	counter.innerHTML = '0';
+});
+
+circle2.addEventListener('click', (e) => {
+	carbon.style.height = '85%';
+	carbon.style.width = '65%';
+});
+//green circle
+circle3.addEventListener('click', (e) => {
+	carbon.style.height = '90%';
+	carbon.style.width = '90%';
+});
+</script>
+
+</body>
+</html>

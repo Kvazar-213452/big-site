@@ -1,0 +1,596 @@
+@import 'solid/conf';
+@import 'solid/mixin';
+
+body{
+    background-color: $bg_color_12;
+}
+
+.menu {
+    position: fixed;
+    height: 100%;
+    width: $w_menu;
+    background-color: $bg_color_2;
+}
+
+.logo_div {
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+.logo_img {
+    height: 70px;
+    float: left;
+    position: relative;
+}
+
+.name_menu {
+    position: relative;
+    left: 5px;
+    top: 23px;
+    font-size: 27px;
+}
+
+.item_menu,
+.item_menu_1 {
+    position: relative;
+    height: 25px;
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.item_menu:hover{
+    background-color: $bg_color_3;
+    color: $color_green;
+}
+
+.item_menu_1:hover{
+    background-color: $bg_color_3;
+    color: $color_orange;
+}
+
+.item_menu_img {
+    position: relative;
+    float: left;
+    height: 25px;
+    margin-left: 10px;
+}
+
+.item_menu_p {
+    position: relative;
+    left: 20px;
+    top: 3px;
+}
+
+.conar_menu{
+    position: absolute;
+    left: 0%;
+    top: 90px;
+    height: calc(100% - 90px); 
+}
+
+.menu_set_page{border-bottom: $border_solid;}
+
+.menu_set_page,
+.menu_conf_page {
+    position: absolute;
+    left: 0;
+    width: 275px;
+    overflow-y: auto; 
+    overflow-x: hidden; 
+    transition: overflow-y 0.3s ease;
+    padding-right: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.menu_conf_page {
+    height: 44%;
+    z-index: 98;
+    bottom: 0;
+}
+
+.menu_set_page {
+    height: 50%;
+    top: 0;
+}
+
+.menu_set_page {
+    overflow: hidden; 
+
+    &:hover{overflow-y: auto; }
+}
+
+.menu_x{
+    position: fixed;
+    left: 290px;
+    height: 60px;
+    width: calc(100% - 290px);
+    background-color: $bg_color_4;
+}
+
+.name_frame{
+    position: relative;
+    font-size: 25px;
+    color: $text_color_w;
+    top: 16px;
+    margin-left: 20px;
+}
+
+.coin_l{
+    position: relative;
+    float: right;
+    top: -3px;
+    left: -30px;
+}
+
+.coin{
+    color: $color_orange;
+    float: left;
+    margin-left: 10px;
+}
+
+.ar{
+    color: $color_green;
+    float: left;
+}
+
+.iframe{
+    position: fixed;
+    top: 60px;
+    left: 290px;
+    height: calc(100vh - 60px);
+    width: calc(100% - 290px);
+}
+
+.color_a{color: $color_green !important;}
+
+.history_div{
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    height: 50px;
+    width: 100%;
+    background-color: $bg_color_2;
+}
+
+.history_text{
+    font-size: 22px;
+    left: 20px;
+    top: 13px;
+    position: relative;
+    float: left;
+}
+
+.history_button{
+    position: relative;
+    float: right;
+    left: -20px;
+    top: 7.5px;
+}
+
+#hist{
+    position: absolute;
+    overflow-y: auto; 
+    left: 0%;
+    width: 100%;
+    top: 50px;
+    height: calc(100% - 50px);
+}
+
+.hover_img{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    margin-left: 15px;
+    float: left;
+    cursor: pointer;
+    background-color: $bg_color_5;
+    border: solid 2px $text_color_o;
+    top: -2px;
+}
+
+.hover_img:hover{border: solid 2px $color_green;}
+
+#iiim:hover{
+    @include hover_bor_opti($color_red, 1, 2px);
+}
+
+.img_left1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 22px;
+}
+
+.yy5{
+    position: relative;
+    left: 20px;
+    width: calc(100% - 80px);
+    margin-top: 20px;
+    padding: 15px;
+    cursor: pointer;
+    height: 15px;
+    background-color: $bg_color_6;
+
+    &:hover{opacity: 0.7;}
+}
+
+.name_hist{
+    position: absolute;
+    left: 20px;
+    width: 30%;
+    color: $color_green;
+}
+
+.time_hist{
+    position: absolute;
+    left: 30%;
+    width: 30%;
+    color: $color_orange;
+}
+
+.id_hist{
+    position: absolute;
+    left: 60%;
+    width: 40%;
+    color: $color_red;
+}
+
+.main_model_p{
+    font-size: 17px;
+    color: $color_green;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+    position: relative;
+    top: -10px;
+    z-index: 1000;
+    left: -20px;
+
+    &:hover,
+    &:focus{
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+
+.modal_ask{
+    position: fixed;
+    width: calc(100%);
+    height: 20px;
+    left: 0px;
+    top: 0px;
+    background-color: $bg_color_1;
+    padding: 10px;
+}
+
+.center_ask_modal_div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button_ask_modal{
+    background-color: $bg_color_2;
+    padding: 7px;
+    font-size: 16px;
+    position: relative;
+    font-weight: normal;
+    float: left;
+    margin-right: 20px;
+    border: solid 2px $bg_color_7;
+}
+
+#popup-container {
+    display: none;
+    position: fixed;
+    top: -400px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $bg_color_8;
+    padding: 10px;
+    transition: top 0.5s ease-in-out;
+    box-shadow: 2px 2px 4px $modal_background; 
+    z-index: 1000000000;
+    color: $text_color;
+}
+
+.settings_menu{
+    position: relative;
+    float: left;
+    left: 0%;
+    top: 0%;
+    height: 100%;
+    width: 210px;
+    background-color: $bg_color_2;
+}
+
+.settings_menu_top {
+    position: relative;
+    left: 5px;
+}
+
+.settings_menu_page{
+    position: relative;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 170px;
+    padding: 10px;
+    border: solid 2px $text_color_o;
+}
+
+.modal_menu_settings{
+    position: relative;
+    float: left;
+    height: 25px;
+    top: -2px;
+}
+
+.modal_menu_settings_tetx{
+    position: relative;
+    top: 1.5px;
+    left: 5px;
+}
+
+#div_setings1,
+#div_setings2,
+#div_setings3,
+#div_setings4,
+#div_setings5,
+#div_setings6,
+#div_setings7,
+#div_setings8{
+    display: none;
+    position: relative;
+    float: left;
+    height: 100%;
+    width: calc(100% - 210px);
+    overflow-y: auto; 
+    padding: 15px;
+    box-sizing: border-box; 
+}
+
+.setings_head_text{
+    font-size: 19px;
+    color: $color_green;
+}
+
+.setings_under_text{font-size: 17px;}
+
+.vvv{
+    position: relative;
+    padding: 10px;
+    float: left;
+    margin-top: 30px;
+    top: -30px;
+    background-color: $bg_color_9;
+}
+
+.button_seting_color_ch{
+    position: relative;
+    margin-left: 10px;
+    padding: 8px;
+    top: 8px;
+    left: -10px;
+    font-size: 15px;
+    background-color: $bg_color_10;
+    @include hover_bor_color($text_color_o, $text_color, 2px);
+
+    &:hover{border: solid 2px $color_green;}
+}
+
+#fileInput {display: none;}
+
+.button_langvage{
+    padding: 8px;
+    font-size: 15px;
+    float: left;
+    margin-left: 15px;
+    margin-top: 15px;
+    position: relative;
+    top: -5px;
+    background-color: $bg_color_10;
+    left: -10px;
+    @include hover_bor_color($text_color_o, $color_green, 2px);
+
+    &:hover{border: solid 2px $color_green;}
+}
+
+.dic_fon_cont_change{
+    position: relative;
+    margin-left: 15px;
+    margin-top: 15px;
+    width: 230px;
+    height: 220px;
+    float: left;
+    background-color: $bg_color_9;
+}
+
+.setings_fon_changer{
+    position: relative;
+    width: 100%;
+    height: 170px;
+    top: 0%;
+    left: 0%;
+}
+
+.buttton_acaunt{
+    padding: 7px;
+    font-size: 15px;
+}
+
+.close1 {
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    z-index: 1000;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        cursor: pointer;
+    }
+}
+
+.color_setings_button_a{@include hover_bor_color($color_green, $color_orange, 2px);}
+
+.set_background{
+    margin: 0px;
+    position: relative;
+    padding: 5px;
+    font-size: 16px;
+    left: 5px;
+    top: 10px;
+    background-color: $bg_color_11;
+    color: $color_green;
+}
+
+#fon_chenge {
+    position: fixed;
+    top: 60px;
+    left: 290px;
+    height: calc(100vh - 60px);
+    width: calc(100% - 290px);
+    background-color: $text_color_o;
+}
+
+.div_img_reg{
+    position: relative;
+    float: left;
+    margin-right: 40px;
+    width: 300px;
+    height: 360px;
+    background-color: $bg_color_2;
+    top: calc(100% - 85%);
+    left: calc(100% - 85%);
+
+    &:hover{opacity: 0.5;}
+
+    &:hover .p_reg_1{
+        color: $color_green !important;
+        opacity: 1;
+    }    
+}
+
+.img_reg_1{
+    height: 90%;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.p_reg_1{
+    position: absolute; 
+    left: 50%;
+    transform: translate(-50%);
+    top: calc(100% - 30px);
+    bottom: 0px;
+}
+
+.len_mas_1{
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 40%;
+}
+
+.len_mas_2{
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 60%;
+}
+
+.col_img{
+	background: url(https://img.freepik.com/free-vector/gradient-black-background-with-cubes_23-2149197765.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1722556800&semt=ais_hybrid);
+	height: 100%;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+}
+
+.pading{padding: 15px;}
+
+.masin_p_tetx{
+    position: relative;
+    text-align: center;
+    font-size: 27px;
+}
+
+.name_input{
+    position: relative;
+    width: 60%;
+    color: $text_color;
+    padding: 7px;
+    background-color: $bg_color_2;
+}
+
+.reg_log_div_c,
+.reg_log_div_c_1{
+    background-color: $bg_color_5;
+    position: relative;
+    float: left;
+    margin-right: 20px;
+    @include hover_bor_color($text_color_o, $bg_color_2, 1px);
+    color: $text_color;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.reg_log_div_c:hover{@include hover_bor_color($color_green, $color_green, 1px);}
+
+.reg_log_div_c_1:hover{border: solid 1px $color_orange;}
+
+.radio_button{
+    position: relative;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.lang_color_radio {
+    position: relative;
+    appearance: none; 
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; 
+    outline: none; 
+    cursor: pointer;
+    background-color: $bg_color_13; 
+    border: solid 2px $text_color_o;
+    transition: all .3s;
+}
+
+.radio_button:hover{
+    color: $color_green;
+    .lang_color_radio{border-color: $color_green;}
+}
+
+.lang_color_radio:checked {background-color: $color_green;}
+
+.lang_color_radio:focus {border-color: $color_green;}
+
+#selectedColor{
+    font-size: 17px;
+    color: $color_green;
+}

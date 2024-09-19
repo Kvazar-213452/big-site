@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Ball",
+        "img_url": "server/game_server/file/img/gamef/1.png",
+        "url_game":"server/game_server/file/all/ball.html"
+    },
+    {
+        "name": "Chess",
+        "img_url": "server/game_server/file/img/gamef/7.png",
+        "url_game":"server/game_server/file/all/chess.html"
+    },
+    {
+        "name": "Hare",
+        "img_url": "server/game_server/file/img/gamef/5.png",
+        "url_game":"server/game_server/file/all/hare.html"
+    },
+    {
+        "name": "Jump",
+        "img_url": "server/game_server/file/img/gamef/6.png",
+        "url_game":"server/game_server/file/all/jump.html"
+    },
+    {
+        "name": "Ninja Cube",
+        "img_url": "server/game_server/file/img/gamef/2.png",
+        "url_game":"server/game_server/file/all/ninja_Cube.html"
+    },
+    {
+        "name": "Ninja",
+        "img_url": "server/game_server/file/img/gamef/12.png",
+        "url_game":"server/game_server/file/all/ninja.html"
+    },
+    {
+        "name": "Platforms",
+        "img_url": "server/game_server/file/img/gamef/4.png",
+        "url_game":"server/game_server/file/all/platforms.html"
+    },
+    {
+        "name": "Stone scissors",
+        "img_url": "server/game_server/file/img/gamef/8.png",
+        "url_game":"server/game_server/file/all/stone_scissors_paper.html"
+    },
+    {
+        "name": "Targets",
+        "img_url": "server/game_server/file/img/gamef/13.png",
+        "url_game":"server/game_server/file/all/targets.html"
+    },
+    {
+        "name": "Tenis",
+        "img_url": "server/game_server/file/img/gamef/11.png",
+        "url_game":"server/game_server/file/all/tenis.html"
+    },
+    {
+        "name": "Tetris",
+        "img_url": "server/game_server/file/img/gamef/9.png",
+        "url_game":"server/game_server/file/all/tetris.html"
+    },
+    {
+        "name": "tic tac toe",
+        "img_url": "server/game_server/file/img/gamef/3.png",
+        "url_game":"server/game_server/file/all/tic_tac_toe.html"
+    },
+    {
+        "name": "Memory-game",
+        "img_url": "server/game_server/file/img/gamef/15.png",
+        "url_game":"server/game_server/file/all/memory-game.html"
+    },
+    {
+        "name": "Memory",
+        "img_url": "server/game_server/file/img/gamef/16.png",
+        "url_game":"server/game_server/file/all/memory.html"
+    }
+]

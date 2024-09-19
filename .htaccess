@@ -1,0 +1,80 @@
+RewriteEngine On
+
+<FilesMatch "\.(jpg|jpeg|png|gif|css|js|ico|html)$">
+    Header unset Cache-Control
+    Header unset Pragma
+    Header unset Expires
+</FilesMatch>
+
+
+
+
+#style css url
+RewriteRule ^style/style$ src/css/style.css [L]
+RewriteRule ^style/global$ src/css/global.css [L]
+RewriteRule ^style/menu$ src/css/menu.css [L]
+RewriteRule ^style/modal$ src/css/modal.css [L]
+RewriteRule ^style/app$ src/css/app.css [L]
+
+RewriteRule ^style/topic/black$ src/css/topic/black.css [L]
+RewriteRule ^style/topic/white$ src/css/topic/white.css [L]
+
+
+#script js url
+RewriteRule ^js/conf$ src/js/conf.js [L]
+RewriteRule ^js/page$ src/js/page.js [L]
+RewriteRule ^js/menu$ src/js/menu.js [L]
+RewriteRule ^js/settings$ src/js/settings.js [L]
+RewriteRule ^js/function$ src/js/function.js [L]
+RewriteRule ^js/start$ src/js/start.js [L]
+RewriteRule ^js/style$ src/js/style.js [L]
+RewriteRule ^js/page/game$ src/js/page/game.js [L]
+RewriteRule ^js/page/music$ src/js/page/music.js [L]
+RewriteRule ^js/reg_log$ src/js/post/reg_log.js [L]
+RewriteRule ^js/accaunt$ src/js/post/accaunt.js [L]
+RewriteRule ^js/frame_controller$ src/js/page/frame_controller.js [L]
+RewriteRule ^js/start_frame$ src/js/page/start_frame.js [L]
+
+
+#lib url
+RewriteRule ^lib/js/jquery$ src/lib/jquery-3.6.4.min.js [L]
+RewriteRule ^lib/js/translator_PA$ src/lib/translator_PA.js [L]
+RewriteRule ^lib/css/bg_css$ src/lib/bg_css.css [L]
+
+
+#page html url
+RewriteRule ^page/main$ src/main.php [L]
+RewriteRule ^page/game$ src/game.php [L]
+RewriteRule ^page/app$ src/app.php [L]
+RewriteRule ^page/music$ src/music.php [L]
+
+
+#page fon url
+RewriteRule ^fon/0$ src/fon/0.php [L]
+RewriteRule ^fon/1$ src/fon/1.php [L]
+RewriteRule ^fon/2$ src/fon/2.php [L]
+RewriteRule ^fon/3$ src/fon/3.php [L]
+RewriteRule ^fon/4$ src/fon/4.php [L]
+RewriteRule ^fon/5$ src/fon/5.php [L]
+RewriteRule ^fon/6$ src/fon/6.php [L]
+RewriteRule ^fon/7$ src/fon/7.php [L]
+RewriteRule ^fon/8$ src/fon/8.php [L]
+RewriteRule ^fon/9$ src/fon/9.php [L]
+RewriteRule ^fon/10$ src/fon/10.php [L]
+RewriteRule ^fon/11$ src/fon/11.php [L] 
+
+
+#game server
+RewriteRule ^server/game/pc$ server/game_server/pc_game.php [L]
+RewriteRule ^server/game/all$ server/game_server/all_game.php [L]
+
+
+#music server
+RewriteRule ^server/music/play_list$ server/music_server/play_list.php [L]
+
+#lisen_post
+RewriteRule ^db/lisen_db$ php/lisen_post/lisen_db.php [L]
+RewriteRule ^db/lisen_cacaunt$ php/lisen_post/lisen_cacaunt.php [L]
+
+#app server
+RewriteRule ^server/app$ server/app_server/app.php [L]
